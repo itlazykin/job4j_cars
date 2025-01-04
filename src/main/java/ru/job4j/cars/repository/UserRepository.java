@@ -39,12 +39,12 @@ public class UserRepository {
      * @param user пользователь.
      */
     public void update(User user) {
-        var session = sf.openSession();
+        var  session = sf.openSession();
         try {
             session.beginTransaction();
-            session.createQuery("UPDATE User SET login = :login AND password = :password WHERE id = :fid")
-                    .setParameter("login", user.getLogin())
-                    .setParameter("password", user.getPassword())
+            session.createQuery("UPDATE User SET login = :fLogin WHERE id = :fId")
+                    .setParameter("fLogin", "new login")
+                    .setParameter("fId", user.getId())
                     .executeUpdate();
             session.getTransaction().commit();
         } catch (Exception e) {
@@ -104,20 +104,19 @@ public class UserRepository {
      */
     public Optional<User> findById(int userId) {
         var session = sf.openSession();
-        Optional<User> userOptional = Optional.empty();
+        Optional<User> result = Optional.empty();
         try {
             session.beginTransaction();
-            Query<User> query = session.createQuery(
-                    "FROM User AS u WHERE u.id = :fId", User.class);
-            query.setParameter("fId", userId);
-            userOptional = Optional.of(query.getSingleResult());
+            result = session.createQuery("FROM User AS u WHERE u.id = :fId", User.class)
+                    .setParameter("fId", userId)
+                    .uniqueResultOptional();
             session.getTransaction().commit();
         } catch (Exception e) {
             session.getTransaction().rollback();
         } finally {
             session.close();
         }
-        return userOptional;
+        return result;
     }
 
     /**
