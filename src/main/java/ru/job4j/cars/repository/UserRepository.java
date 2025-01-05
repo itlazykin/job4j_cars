@@ -42,9 +42,9 @@ public class UserRepository {
         var  session = sf.openSession();
         try {
             session.beginTransaction();
-            session.createQuery("UPDATE User SET login = :fLogin WHERE id = :fId")
-                    .setParameter("fLogin", "new login")
-                    .setParameter("fId", user.getId())
+            session.createQuery("UPDATE User SET login = :login, password = :password WHERE id = :id")
+                    .setParameter("login", user.getLogin())
+                    .setParameter("password", user.getPassword())
                     .executeUpdate();
             session.getTransaction().commit();
         } catch (Exception e) {
