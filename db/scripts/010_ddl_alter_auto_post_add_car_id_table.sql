@@ -1,0 +1,1 @@
+ALTER TABLE auto_post ADD COLUMN car_id BIGINT REFERENCES car(id);
