@@ -1,14 +1,17 @@
-package ru.job4j.cars.repository;
+package ru.job4j.cars.repository.user;
 
 import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Repository;
 import ru.job4j.cars.model.User;
+import ru.job4j.cars.repository.CrudRepository;
 
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
 @AllArgsConstructor
-public class UserRepository {
+@Repository
+public class HQLUserRepository {
     private final CrudRepository crudRepository;
 
     /**
@@ -36,7 +39,7 @@ public class UserRepository {
      *
      * @param userId ID
      */
-    public void delete(int userId) {
+    public void delete(Long userId) {
         crudRepository.run("DELETE FROM User WHERE id = :fId",
                 Map.of("fId", userId));
     }
@@ -55,7 +58,7 @@ public class UserRepository {
      *
      * @return пользователь.
      */
-    public Optional<User> findById(int userId) {
+    public Optional<User> findById(Long userId) {
         return crudRepository.optional(
                 "FROM User WHERE id = :fId", User.class,
                 Map.of("fId", userId)
