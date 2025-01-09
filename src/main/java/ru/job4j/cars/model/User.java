@@ -8,9 +8,11 @@ import javax.persistence.*;
 @Table(name = "auto_user")
 @Data
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
+
     private String login;
     private String password;
 }
