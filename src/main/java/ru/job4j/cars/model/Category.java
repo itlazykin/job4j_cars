@@ -4,18 +4,19 @@ import lombok.*;
 
 import javax.persistence.*;
 
-@Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@Entity()
+@Table(name = "categories")
 @Getter
 @Setter
-@Table(name = "types")
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Type {
+public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
+
     private Long id;
 
     private String name;

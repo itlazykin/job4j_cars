@@ -4,14 +4,14 @@ import lombok.*;
 
 import javax.persistence.*;
 
-@Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@Entity()
+@Table(name = "model")
 @Getter
 @Setter
-@Table(name = "types")
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Type {
+public class CarModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,4 +19,8 @@ public class Type {
     private Long id;
 
     private String name;
+
+    @ManyToOne
+    @JoinColumn(name = "brand_id")
+    private Brand brand;
 }
