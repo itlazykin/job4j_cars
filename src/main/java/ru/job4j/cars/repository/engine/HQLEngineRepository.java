@@ -1,7 +1,9 @@
 package ru.job4j.cars.repository.engine;
 
+import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Repository;
 import ru.job4j.cars.model.Engine;
 import ru.job4j.cars.repository.CrudRepository;
 
@@ -9,8 +11,12 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.Optional;
 
+@Repository
+@AllArgsConstructor
 public class HQLEngineRepository implements EngineRepository {
+
     private CrudRepository crudRepository;
+
     private static final Logger LOGGER = LoggerFactory.getLogger(HQLEngineRepository.class);
 
     @Override
