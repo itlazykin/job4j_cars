@@ -14,7 +14,9 @@ import java.util.Optional;
 @Repository
 @AllArgsConstructor
 public class HQLCarRepository implements CarRepository {
+
     CrudRepository crudRepository;
+
     private static final Logger LOGGER = LoggerFactory.getLogger(HQLCarRepository.class);
 
     @Override

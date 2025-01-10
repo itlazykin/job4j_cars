@@ -15,6 +15,7 @@ import java.util.function.Function;
 @Repository
 @AllArgsConstructor
 public class CrudRepository {
+
     private final SessionFactory sf;
 
     public void run(Consumer<Session> command) {

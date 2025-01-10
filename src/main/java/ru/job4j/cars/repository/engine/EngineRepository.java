@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.Optional;
 
 public interface EngineRepository {
+
     Collection<Engine> findAll();
 
     Optional<Engine> findById(int id);

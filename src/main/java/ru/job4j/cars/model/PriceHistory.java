@@ -22,6 +22,8 @@ public class PriceHistory {
     private Long id;
 
     private long before;
+
     private long after;
+
     private LocalDateTime created;
 }

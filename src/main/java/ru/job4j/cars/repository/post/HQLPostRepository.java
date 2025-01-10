@@ -8,7 +8,6 @@ import ru.job4j.cars.repository.CrudRepository;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.Collection;
-import java.util.List;
 import java.util.Map;
 
 @Repository
@@ -35,7 +34,7 @@ public class HQLPostRepository implements PostRepository {
 
     @Override
     public Collection<Post> findAllWithPhotos() {
-        return crudRepository.query("FROM Post p WHERE SIZE(p.photoList) > 0 ORDER BY p.id",
+        return crudRepository.query("FROM Post p WHERE SIZE(p.fileList) > 0 ORDER BY p.id",
                 Post.class);
     }
 

@@ -12,6 +12,7 @@ import java.util.Optional;
 @AllArgsConstructor
 @Repository
 public class HQLUserRepository {
+
     private final CrudRepository crudRepository;
 
     /**

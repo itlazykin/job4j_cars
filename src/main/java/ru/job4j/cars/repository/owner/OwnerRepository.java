@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.Optional;
 
 public interface OwnerRepository {
+
     Collection<Owner> findAll();
 
     Optional<Owner> findById(int id);
