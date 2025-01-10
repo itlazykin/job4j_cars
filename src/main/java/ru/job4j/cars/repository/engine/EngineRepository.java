@@ -9,9 +9,9 @@ public interface EngineRepository {
 
     Collection<Engine> findAll();
 
-    Optional<Engine> findById(int id);
+    Optional<Engine> findById(Long id);
 
     Optional<Engine> save(Engine engine);
 
-    boolean deleteById(int id);
+    boolean deleteById(Long id);
 }

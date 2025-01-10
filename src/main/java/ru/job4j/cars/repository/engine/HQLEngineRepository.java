@@ -26,10 +26,10 @@ public class HQLEngineRepository implements EngineRepository {
     }
 
     @Override
-    public Optional<Engine> findById(int id) {
+    public Optional<Engine> findById(Long id) {
         return crudRepository.optional("FROM Engine WHERE id = :fId",
                 Engine.class,
-                Map.of(":fId", id));
+                Map.of("fId", id));
 
     }
 
@@ -46,7 +46,7 @@ public class HQLEngineRepository implements EngineRepository {
     }
 
     @Override
-    public boolean deleteById(int id) {
+    public boolean deleteById(Long id) {
         return crudRepository.runBoolean("DELETE Engine WHERE id = :fId",
                 Map.of("fId", id));
     }

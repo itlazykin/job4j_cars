@@ -46,7 +46,7 @@ public class HQLOwnerRepository implements OwnerRepository {
 
     @Override
     public boolean deleteById(int id) {
-        return crudRepository.runBoolean("DELETE Owner WHERE id = f:id",
+        return crudRepository.runBoolean("DELETE Owner WHERE id = :fId",
                 Map.of("fId", id));
     }
 }

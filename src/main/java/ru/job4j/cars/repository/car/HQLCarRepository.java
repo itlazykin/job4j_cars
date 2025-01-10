@@ -26,7 +26,7 @@ public class HQLCarRepository implements CarRepository {
     }
 
     @Override
-    public Optional<Car> findById(int id) {
+    public Optional<Car> findById(Long id) {
         return crudRepository.optional("FROM Car WHERE id = :fId",
                 Car.class,
                 Map.of("fId", id));
@@ -45,7 +45,7 @@ public class HQLCarRepository implements CarRepository {
     }
 
     @Override
-    public boolean deleteById(int id) {
+    public boolean deleteById(Long id) {
         return crudRepository.runBoolean("DELETE Car WHERE id = :fId",
                 Map.of("fId", id));
     }

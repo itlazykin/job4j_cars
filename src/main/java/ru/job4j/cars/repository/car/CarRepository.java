@@ -9,9 +9,9 @@ public interface CarRepository {
 
     Collection<Car> findAll();
 
-    Optional<Car> findById(int id);
+    Optional<Car> findById(Long id);
 
     Optional<Car> save(Car car);
 
-    boolean deleteById(int id);
+    boolean deleteById(Long id);
 }

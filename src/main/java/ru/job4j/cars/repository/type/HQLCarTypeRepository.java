@@ -26,7 +26,7 @@ public class HQLCarTypeRepository implements CarTypeRepository {
         return crudRepository.optional(
                 "FROM Type WHERE id = :fId",
                 Type.class,
-                Map.of("id", id)
+                Map.of("fId", id)
         );
     }
 
