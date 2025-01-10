@@ -22,7 +22,7 @@ public class HQLCarTypeRepository implements CarTypeRepository {
     }
 
     @Override
-    public Optional<Type> findById(int id) {
+    public Optional<Type> findById(Long id) {
         return crudRepository.optional(
                 "FROM Type WHERE id = :fId",
                 Type.class,

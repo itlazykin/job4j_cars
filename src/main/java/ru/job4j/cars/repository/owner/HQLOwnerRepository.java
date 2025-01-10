@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import ru.job4j.cars.model.Owner;
 import ru.job4j.cars.repository.CrudRepository;
 
-import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -20,13 +20,13 @@ public class HQLOwnerRepository implements OwnerRepository {
     private static final Logger LOGGER = LoggerFactory.getLogger(HQLOwnerRepository.class);
 
     @Override
-    public Collection<Owner> findAll() {
+    public List<Owner> findAll() {
         return crudRepository.query("From Owner o ORDER BY o.id",
                 Owner.class);
     }
 
     @Override
-    public Optional<Owner> findById(int id) {
+    public Optional<Owner> findById(Long id) {
         return crudRepository.optional("FROM Owner WHERE id = :fId",
                 Owner.class,
                 Map.of("fId", id));
@@ -45,7 +45,7 @@ public class HQLOwnerRepository implements OwnerRepository {
     }
 
     @Override
-    public boolean deleteById(int id) {
+    public boolean deleteById(Long id) {
         return crudRepository.runBoolean("DELETE Owner WHERE id = :fId",
                 Map.of("fId", id));
     }

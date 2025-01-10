@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import ru.job4j.cars.model.Car;
 import ru.job4j.cars.repository.CrudRepository;
 
-import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -20,7 +20,7 @@ public class HQLCarRepository implements CarRepository {
     private static final Logger LOGGER = LoggerFactory.getLogger(HQLCarRepository.class);
 
     @Override
-    public Collection<Car> findAll() {
+    public List<Car> findAll() {
         return crudRepository.query("FROM Car c ORDER BY c.id",
                 Car.class);
     }

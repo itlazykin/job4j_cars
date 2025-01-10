@@ -9,7 +9,7 @@ public interface CarTypeRepository {
 
     Type save(Type type);
 
-    Optional<Type> findById(int id);
+    Optional<Type> findById(Long id);
 
     List<Type> findAll();
 }

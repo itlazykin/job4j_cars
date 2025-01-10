@@ -38,11 +38,11 @@ public class HQLUserRepository {
     /**
      * Удалить пользователя по id.
      *
-     * @param userId ID
+     * @param id ID
      */
-    public void delete(Long userId) {
-        crudRepository.run("DELETE FROM User WHERE id = :fId",
-                Map.of("fId", userId));
+    public boolean deleteById(Long id) {
+        return crudRepository.runBoolean("DELETE FROM User WHERE id = :fId",
+                Map.of("fId", id));
     }
 
     /**

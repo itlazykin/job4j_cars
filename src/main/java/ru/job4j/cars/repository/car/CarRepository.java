@@ -2,12 +2,12 @@ package ru.job4j.cars.repository.car;
 
 import ru.job4j.cars.model.Car;
 
-import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 public interface CarRepository {
 
-    Collection<Car> findAll();
+    List<Car> findAll();
 
     Optional<Car> findById(Long id);
 

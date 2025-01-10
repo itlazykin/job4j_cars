@@ -65,7 +65,7 @@ class HQLFileRepositoryTest {
         file.setName("test");
         file.setPath("path");
         fileRepository.save(file);
-        fileRepository.deleteById(file.getId());
+        fileRepository.deleteById((long) file.getId());
         assertThat(fileRepository.findAll()).doesNotContain(file);
     }
 }

@@ -8,6 +8,7 @@ import ru.job4j.cars.repository.CrudRepository;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 
 @Repository
@@ -39,9 +40,15 @@ public class HQLPostRepository implements PostRepository {
     }
 
     @Override
-    public Collection<Post> findPostsByCarBrand(String type) {
+    public Collection<Post> findPostsByBrand(String brand) {
         return crudRepository.query("FROM Post p WHERE p.type.name = :fType",
                 Post.class,
-                Map.of("fType", type));
+                Map.of("fType", brand));
+    }
+
+    @Override
+    public List<Post> findAll() {
+        return crudRepository.query("FROM Post p ORDER BY p.created ASC",
+                Post.class);
     }
 }

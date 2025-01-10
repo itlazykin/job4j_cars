@@ -2,16 +2,16 @@ package ru.job4j.cars.repository.owner;
 
 import ru.job4j.cars.model.Owner;
 
-import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 public interface OwnerRepository {
 
-    Collection<Owner> findAll();
+    List<Owner> findAll();
 
-    Optional<Owner> findById(int id);
+    Optional<Owner> findById(Long id);
 
     Optional<Owner> save(Owner owner);
 
-    boolean deleteById(int id);
+    boolean deleteById(Long id);
 }
