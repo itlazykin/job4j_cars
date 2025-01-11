@@ -11,7 +11,7 @@ import java.util.Optional;
 
 @AllArgsConstructor
 @Repository
-public class HQLUserRepository {
+public class HQLUserRepository implements UserRepository {
 
     private final CrudRepository crudRepository;
 
@@ -21,6 +21,7 @@ public class HQLUserRepository {
      * @param user пользователь.
      * @return пользователь с id.
      */
+    @Override
     public User create(User user) {
         crudRepository.run(session -> session.persist(user));
         return user;
@@ -31,6 +32,7 @@ public class HQLUserRepository {
      *
      * @param user пользователь.
      */
+    @Override
     public void update(User user) {
         crudRepository.run(session -> session.merge(user));
     }
@@ -40,6 +42,7 @@ public class HQLUserRepository {
      *
      * @param id ID
      */
+    @Override
     public boolean deleteById(Long id) {
         return crudRepository.runBoolean("DELETE FROM User WHERE id = :fId",
                 Map.of("fId", id));
@@ -50,6 +53,7 @@ public class HQLUserRepository {
      *
      * @return список пользователей.
      */
+    @Override
     public List<User> findAllOrderById() {
         return crudRepository.query("FROM User ORDER BY id ASC", User.class);
     }
@@ -59,6 +63,7 @@ public class HQLUserRepository {
      *
      * @return пользователь.
      */
+    @Override
     public Optional<User> findById(Long userId) {
         return crudRepository.optional(
                 "FROM User WHERE id = :fId", User.class,
@@ -72,6 +77,7 @@ public class HQLUserRepository {
      * @param key key
      * @return список пользователей.
      */
+    @Override
     public List<User> findByLikeLogin(String key) {
         return crudRepository.query(
                 "FROM User WHERE login LIKE :fKey", User.class,
@@ -85,10 +91,11 @@ public class HQLUserRepository {
      * @param login login.
      * @return Optional or user.
      */
-    public Optional<User> findByLogin(String login) {
+    @Override
+    public Optional<User> findByLoginAndPassword(String login, String password) {
         return crudRepository.optional(
-                "FROM User WHERE login = :fLogin", User.class,
-                Map.of("fLogin", login)
+                "FROM User WHERE login = :fLogin AND password = :fPassword", User.class,
+                Map.of("fLogin", login, "fPassword", password)
         );
     }
 }

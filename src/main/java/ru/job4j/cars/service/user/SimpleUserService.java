@@ -45,7 +45,7 @@ hqlUserRepository.update(user);
     }
 
     @Override
-    public Optional<User> findByLogin(String login) {
-        return hqlUserRepository.findByLogin(login);
+    public Optional<User> findByLoginAndPassword(String login, String password) {
+        return hqlUserRepository.findByLoginAndPassword(login, password);
     }
 }

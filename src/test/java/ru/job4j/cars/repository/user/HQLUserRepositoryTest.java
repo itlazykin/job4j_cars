@@ -70,7 +70,7 @@ class HQLUserRepositoryTest {
         user.setLogin("user5");
         user.setPassword("test5");
         userRepository.create(user);
-        var rsl = userRepository.findByLogin(user.getLogin()).get();
+        var rsl = userRepository.findByLoginAndPassword(user.getLogin(), user.getPassword()).get();
         assertThat(rsl).isEqualTo(user);
     }
 }
