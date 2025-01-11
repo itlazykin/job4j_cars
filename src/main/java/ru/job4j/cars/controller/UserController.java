@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ru.job4j.cars.model.User;
 import ru.job4j.cars.service.user.UserService;
+import ru.job4j.cars.timezone.TimeZones;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.Arrays;
 import java.util.TimeZone;
 
 @Controller
@@ -22,11 +22,11 @@ public class UserController {
 
     private final UserService userService;
 
-    private final TimeZone zones;
+    private final TimeZones zones;
 
     @GetMapping("/register")
     public String getRegistrationPage(Model model) {
-        model.addAttribute("timezone", Arrays.asList(TimeZone.getAvailableIDs()));
+        model.addAttribute("timezone", zones.getZones());
         model.addAttribute("zoneDefault", TimeZone.getDefault().getID());
         return "users/register";
     }
