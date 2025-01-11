@@ -11,7 +11,7 @@ import java.util.Optional;
 
 @Repository
 @AllArgsConstructor
-public class HQLCarTypeRepository implements CarTypeRepository {
+public class HQLTypeRepository implements TypeRepository {
 
     private CrudRepository crudRepository;
 

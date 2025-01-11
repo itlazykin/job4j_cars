@@ -5,7 +5,7 @@ import ru.job4j.cars.model.Type;
 import java.util.List;
 import java.util.Optional;
 
-public interface CarTypeRepository {
+public interface TypeRepository {
 
     Type save(Type type);
 
