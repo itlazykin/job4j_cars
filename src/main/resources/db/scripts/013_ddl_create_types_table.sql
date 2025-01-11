@@ -1,4 +1,4 @@
 create table types(
-    id   SERIAL PRIMARY KEY,
+    id   BIGSERIAL PRIMARY KEY,
     name VARCHAR NOT NULL
 );

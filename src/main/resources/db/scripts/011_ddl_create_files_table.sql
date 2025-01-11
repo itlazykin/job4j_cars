@@ -1,5 +1,5 @@
 create table files(
-    id   SERIAL PRIMARY KEY,
+    id   BIGSERIAL PRIMARY KEY,
     name VARCHAR NOT NULL,
     path VARCHAR NOT NULL UNIQUE
 );
