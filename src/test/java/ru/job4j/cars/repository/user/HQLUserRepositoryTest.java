@@ -4,6 +4,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import ru.job4j.cars.model.User;
@@ -25,6 +26,15 @@ class HQLUserRepositoryTest {
                 .configure().build();
         sf = new MetadataSources(registry).buildMetadata().buildSessionFactory();
         userRepository = new HQLUserRepository(new CrudRepository(sf));
+    }
+
+    @AfterEach
+    void cleanDatabase() {
+        try (var session = sf.openSession()) {
+            session.beginTransaction();
+            session.createQuery("DELETE FROM User").executeUpdate();
+            session.getTransaction().commit();
+        }
     }
 
     @Test

@@ -4,6 +4,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import ru.job4j.cars.model.Type;
@@ -11,9 +12,9 @@ import ru.job4j.cars.repository.CrudRepository;
 
 import static org.assertj.core.api.Assertions.*;
 
-class HQLCarTypeRepositoryTest {
+class HQLTypeRepositoryTest {
 
-    private static HQLCarTypeRepository carTypeRepository;
+    private static HQLTypeRepository carTypeRepository;
 
     private static SessionFactory sf;
 
@@ -22,7 +23,16 @@ class HQLCarTypeRepositoryTest {
         StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
                 .configure().build();
         sf = new MetadataSources(registry).buildMetadata().buildSessionFactory();
-        carTypeRepository = new HQLCarTypeRepository(new CrudRepository(sf));
+        carTypeRepository = new HQLTypeRepository(new CrudRepository(sf));
+    }
+
+    @AfterEach
+    void cleanDatabase() {
+        try (var session = sf.openSession()) {
+            session.beginTransaction();
+            session.createQuery("DELETE FROM Type").executeUpdate();
+            session.getTransaction().commit();
+        }
     }
 
     @Test
