@@ -16,8 +16,8 @@ public class UserUsage {
             CrudRepository crudRepository = new CrudRepository(sf);
             var userRepository = new HQLUserRepository(crudRepository);
             var user = new User();
-            user.setLogin("admin");
-            user.setPassword("admin");
+            user.setLogin("admin1");
+            user.setPassword("admin1");
             userRepository.create(user);
             userRepository.findAllOrderById()
                     .forEach(System.out::println);
@@ -25,7 +25,7 @@ public class UserUsage {
                     .forEach(System.out::println);
             userRepository.findById(user.getId())
                     .ifPresent(System.out::println);
-            userRepository.findByLogin("admin")
+            userRepository.findByLoginAndPassword("admin", "admin1")
                     .ifPresent(System.out::println);
             user.setPassword("password");
             userRepository.update(user);
