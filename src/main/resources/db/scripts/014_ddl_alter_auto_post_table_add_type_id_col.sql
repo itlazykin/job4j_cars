@@ -1,1 +1,0 @@
-ALTER TABLE auto_post ADD COLUMN type_id BIGINT REFERENCES types(id);

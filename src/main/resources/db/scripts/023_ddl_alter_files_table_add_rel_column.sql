@@ -1,1 +1,0 @@
-ALTER TABLE files ADD COLUMN auto_post_id BIGINT REFERENCES auto_post(id);

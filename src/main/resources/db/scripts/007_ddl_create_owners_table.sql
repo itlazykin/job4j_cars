@@ -1,4 +1,0 @@
-CREATE TABLE owners
-(
-id BIGSERIAL PRIMARY KEY
-);
